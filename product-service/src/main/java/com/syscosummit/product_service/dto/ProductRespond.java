@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductRespond {
     // Fields representing product
-    private String product_id;
+    private Long product_id;
     private String product_name;
     private String product_description;
     private int product_price;

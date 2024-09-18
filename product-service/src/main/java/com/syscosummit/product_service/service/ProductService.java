@@ -49,7 +49,7 @@ public class ProductService {
         }
     }
 
-    public ProductRespond getProductById(String id) {
+    public ProductRespond getProductById(Long id) {
         try {
             Product product = productRepository.findById(id)
                     .orElseThrow(() -> new ProductNotFoundException("Product not found with ID: " + id));
@@ -61,7 +61,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void updateProduct(String id, ProductRequest productRequest) {
+    public void updateProduct(Long id, ProductRequest productRequest) {
         try {
             Product existingProduct = productRepository.findById(id)
                     .orElseThrow(() -> new ProductNotFoundException("Product not found with ID: " + id));
@@ -81,7 +81,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void deleteProduct(String id) {
+    public void deleteProduct(Long id) {
         try {
             if (!productRepository.existsById(id)) {
                 throw new ProductNotFoundException("Cannot delete, Product not found with ID: " + id);
@@ -96,7 +96,7 @@ public class ProductService {
 
     private ProductRespond mapToProductResponse(Product product) {
         return ProductRespond.builder()
-                .product_id(String.valueOf(product.getId()))
+                .product_id(product.getId())
                 .product_name(product.getProduct_name())
                 .product_description(product.getProduct_description())
                 .product_price(product.getProduct_price())
